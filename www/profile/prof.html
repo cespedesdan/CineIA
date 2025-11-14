@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário - CineIA</title>
+    <link rel="stylesheet" href="/profile/prof.css">
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1425979306336849982/1427161807797223476/favicon.ico?ex=68eddb82&is=68ec8a02&hm=438a3219f73388580c7ccc2c42be42f31f064e31b16f8c42c33467e40529aff8&" type="image/x-icon">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">
+                    <h1 class="cineia-title">
+                        <span class="cine-part">Cine</span><span class="ia-part">IA</span>
+                    </h1>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link"
+                    onclick="window.location.href='../AllMov/mov.html'">
+                    Mais filmes</a>
+                    <a href="#" class="nav-link"
+                    onclick="window.location.href='../RecMov/rmov.html'">
+                    Recomendações</a>
+                    <a href="#" class="nav-link active"
+                    onclick="window.location.href='../avMov/avmov.html'">
+                    Minhas avaliações</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-container">
+                    <div class="search-icon">⌕</div>
+                    <input type="text" class="search-input" placeholder="pesquisar">
+                </div>
+                <div class="user-menu">
+                    <div class="username"
+                         onclick="logoutUser()" id="logoutBtn">
+                         LOGOUT
+                    </div>
+                    <div class="user-avatar-small">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner do usuário -->
+    <div class="user-banner" id="userBanner">
+        <div class="user-info">
+            <img src="https://marketplace.canva.com/Dz63E/MAF4KJDz63E/1/tl/canva-user-icon-MAF4KJDz63E.png" alt="Foto do usuário" class="user-avatar-large" id="userAvatar">
+            <div class="user-details">
+                <h2 id="userName"> name </h2>
+                <p id="moviesCount"></p>
+                <div class="admin-badge" id="adminBadge" style="display: none;">
+                    <span class="admin-icon">⚙️</span>
+                    <span class="admin-text">CONTA ADMINISTRADOR</span>
+                </div>
+            </div>
+        </div>
+        <button class="change-profile-btn" id="changeProfileBtn">Alterar perfil</button>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content">
+        <!-- Coluna esquerda - Filmes avaliados -->
+        <div class="left-column">
+            <div class="section-header">
+                <h2 class="section-title">ÚLTIMOS AVALIADOS</h2>
+                <a href="#" class="see-more-link"
+                    onclick="window.location.href='../AvMov/avmov.html'">
+                ver mais</a>
+            </div>
+            <div class="movies-grid" id="ratedMovies">
+                <!-- Os filmes avaliados serão carregados aqui -->
+            </div>
+        </div>
+
+        <!-- Coluna direita - Recomendações e Favoritos -->
+        <div class="right-column">
+            <div class="favorites-card">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Favoritos" class="card-image" onclick="window.location.href='../Favmov/favmov.html'">
+                <div class="card-content" onclick="window.location.href='../Favmov/favmov.html'">
+                    <h3 class="card-title">Favoritados por você</h3>
+                </div>
+            </div>
+            
+            <!-- Botão ADICIONAR FILMES (apenas para admin) -->
+            <div class="admin-section" id="adminSection" style="display: none;">
+                <button class="add-movies-btn" id="addMoviesBtn">
+                    <span class="add-icon">+</span>
+                    ADICIONAR FILMES
+                </button>
+            <!-- NOVO BOTÃO ADICIONAR POR RECOMENDAÇÃO -->
+                <button class="add-recommendation-btn" id="addRecommendationBtn">
+                     <span class="recommendation-icon">+</span>
+                    ADICIONAR POR RECOMENDAÇÃO
+                </button>
+        
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para alterar perfil -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeProfileBtn">&times;</span>
+            <h2 class="modal-title">Alterar perfil</h2>
+            <div class="form-group">
+                <label for="bannerInput">URL da capa de perfil:</label>
+                <input type="text" id="bannerInput" placeholder="Cole a URL da imagem">
+            </div>
+            <div class="form-group">
+                <label for="avatarInput">URL da foto de perfil:</label>
+                <input type="text" id="avatarInput" placeholder="Cole a URL da imagem">
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancelBtn">Cancelar</button>
+                <button class="save-btn" id="saveBtn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de informações do filme -->
+    <div class="modal" id="movieModal">
+        <div class="movie-modal-content">
+            <span class="close-modal" id="closeMovieBtn">&times;</span>
+            <div class="movie-details" id="movieModalContent">
+                <!-- Conteúdo do filme será carregado aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar filmes (admin) - PRIMEIRA ETAPA -->
+    <div class="modal" id="addMoviesModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAddMoviesBtn">&times;</span>
+            <h2 class="modal-title">Adicionar Novo Filme</h2>
+            <div class="form-group">
+                <label for="movieTitle">Título do Filme:</label>
+                <input type="text" id="movieTitle" placeholder="Digite o título do filme">
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="cancelAddMovieBtn">Cancelar</button>
+                <button class="search-btn" id="searchMovieBtn">Pesquisar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de resultados da pesquisa (admin) - SEGUNDA ETAPA -->
+    <div class="modal" id="searchResultsModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeSearchResultsBtn">&times;</span>
+            <h2 class="modal-title">Resultados da Pesquisa</h2>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Os resultados da pesquisa serão carregados aqui -->
+                <div class="movie-result">
+                    <div class="movie-result-poster">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Filme exemplo">
+                    </div>
+                    <div class="movie-result-info">
+                        <h3 class="movie-result-title">Título do Filme</h3>
+                        <div class="movie-result-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Ano:</span>
+                                <span class="detail-value" id="resultYear">2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gênero:</span>
+                                <span class="detail-value" id="resultGenre">Ação, Aventura</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">IMDb:</span>
+                                <span class="detail-value" id="resultImdb">7.5/10</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Rotten Tomatoes:</span>
+                                <span class="detail-value" id="resultTomatoes">85%</span>
+                            </div>
+                            <div class="detail-item full-width">
+                                <span class="detail-label">Elenco Principal:</span>
+                                <span class="detail-value" id="resultCast">Ator A, Atriz B, Ator C</span>
+                            </div>
+                            <div class="detail-item full-width">
+                                <span class="detail-label">Sinopse:</span>
+                                <span class="detail-value" id="resultSynopsis">Uma emocionante aventura sobre...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="cancel-btn" id="backToSearchBtn">Voltar</button>
+                <button class="save-btn" id="confirmAddMovieBtn">Adicionar Filme</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal de Recomendações IA -->
+    <div class="modal" id="recommendationModal">
+        <div class="modal-content large-modal">
+            <span class="close-modal" id="closeRecommendationBtn">&times;</span>
+            <h2 class="modal-title">RECOMENDAÇÕES POR IA</h2>
+            
+            <div class="recommendations-grid" id="recommendationsGrid">
+                <!-- As recomendações serão carregadas aqui -->
+                <div class="recommendation-item" data-movie-id="1">
+                    <div class="movie-poster-container">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Filme 1" class="recommendation-poster">
+                    </div>
+                    <div class="recommendation-info">
+                        <h3 class="recommendation-title">GUARDIÕES DA GALÁXIA</h3>
+                        <div class="recommendation-genre">Ação, Ficção Científica</div>
+                        <p class="recommendation-description">Os Guardiões da Galáxia embarcam em uma missão perigosa para salvar o universo de uma ameaça cósmica.</p>
+                    </div>
+                </div>
+                
+                <div class="recommendation-item" data-movie-id="2">
+                    <div class="movie-poster-container">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Filme 2" class="recommendation-poster">
+                    </div>
+                    <div class="recommendation-info">
+                        <h3 class="recommendation-title">O PROTETOR</h3>
+                        <div class="recommendation-genre">Ação, Thriller</div>
+                        <p class="recommendation-description">Um ex-agente do governo protege uma jovem em perigo contra organizações criminosas.</p>
+                    </div>
+                </div>
+                
+                <div class="recommendation-item" data-movie-id="3">
+                    <div class="movie-poster-container">
+                        <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Filme 3" class="recommendation-poster">
+                    </div>
+                    <div class="recommendation-info">
+                        <h3 class="recommendation-title">NOITES DE TERROR</h3>
+                        <div class="recommendation-genre">Terror, Suspense</div>
+                        <p class="recommendation-description">Uma família enfrenta forças sobrenaturais em sua nova casa assombrada.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-buttons-center">
+                <button class="cancel-btn" id="cancelRecommendationBtn">CANCELAR</button>
+                <button class="refazer-btn" id="refazerBtn">REFAZER</button>
+                <button class="select-btn" id="selectBtn" disabled>SELECIONAR</button>
+            </div>
+        </div>
+    </div>
+
+ <!-- Adicione isso antes do /body para debug -->
+<!-- <div style="position: fixed; top: 10px; left: 10px; background: #333; color: white; padding: 10px; z-index: 9999;">
+    <button onclick="enableAdmin()" style="background: #a78bfa; color: white; border: none; padding: 5px 10px; margin: 2px;">Ativar Admin</button>
+    <button onclick="disableAdmin()" style="background: #ef4444; color: white; border: none; padding: 5px 10px; margin: 2px;">Desativar Admin</button>
+    <div id="debugInfo" style="margin-top: 5px; font-size: 12px;"></div>
+</div> -->
+    
+<!-- <script>
+function enableAdmin() {
+    localStorage.setItem('userIsAdmin', 'true');
+    location.reload();
+}
+
+function disableAdmin() {
+    localStorage.removeItem('userIsAdmin');
+    location.reload();
+}
+
+// Mostrar status atual
+setTimeout(() => {
+    const isAdmin = localStorage.getItem('userIsAdmin') === 'true';
+    document.getElementById('debugInfo').textContent = `Admin: ${isAdmin}`;
+}, 100);
+</script> -->
+    <!-- Badge de Admin -->
+
+    <script src="prof.js"></script>
+</body>
+</html>

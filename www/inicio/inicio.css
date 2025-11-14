@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a102c, #2d1b4e);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-container {
+    background: #0f0820;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(74, 0, 224, 0.25);
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #3a2a5c;
+    padding: 40px 30px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.login-title {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.login-subtitle {
+    color: #b19cd9;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    color: #b19cd9;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 14px 16px;
+    background: #1a102c;
+    border: 1px solid #3a2a5c;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #8e2de2;
+    box-shadow: 0 0 0 2px rgba(142, 45, 226, 0.2);
+}
+
+.input-field::placeholder {
+    color: #7d6ba0;
+}
+
+.login-button {
+    width: 100%;
+    background: linear-gradient(135deg, #8e2de2, #6a3093);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(142, 45, 226, 0.4);
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(142, 45, 226, 0.6);
+    background: linear-gradient(135deg, #9d3df0, #7a3ca8);
+}
+
+.divider {
+    text-align: center;
+    color: #7d6ba0;
+    font-size: 14px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: #3a2a5c;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.register-button {
+    width: 100%;
+    background: transparent;
+    color: #b19cd9;
+    border: 1px solid #3a2a5c;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.register-button:hover {
+    background: rgba(142, 45, 226, 0.1);
+    border-color: #8e2de2;
+    color: #ffffff;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #b19cd9;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background: #1a102c;
+    border: 1px solid #3a2a5c;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-input:checked ~ .checkmark {
+    background: #8e2de2;
+    border-color: #8e2de2;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #3a2a5c;
+    color: #7d6ba0;
+    font-size: 12px;
+}
+
+/* Efeitos de foco e acessibilidade */
+.input-field:focus,
+.login-button:focus,
+.register-button:focus {
+    outline: 2px solid #8e2de2;
+    outline-offset: 2px;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .login-title {
+        font-size: 28px;
+    }
+    
+    .input-field,
+    .login-button,
+    .register-button {
+        padding: 14px;
+    }
+}
+
+/* Animação sutil no container */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

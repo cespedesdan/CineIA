@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineIA - Cadastro</title>
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1425979306336849982/1427161807797223476/favicon.ico?ex=68eddb82&is=68ec8a02&hm=438a3219f73388580c7ccc2c42be42f31f064e31b16f8c42c33467e40529aff8&" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/Registro/registro.css"/>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="login-title">Cadastrar</h1>
+            <p class="login-subtitle">Crie sua conta CineIA</p>
+        </div>
+
+        <form class="login-form" id="registerForm">
+            <div class="input-group">
+                <label class="input-label">Usuário</label>
+                <input type="text" class="input-field" id="username" placeholder="Digite seu nome de usuário" required>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Senha</label>
+                <input type="password" class="input-field" id="password" placeholder="Digite sua senha" required>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Confirmar senha</label>
+                <input type="password" class="input-field" id="confirmPassword" placeholder="Digite a senha novamente" required>
+                <div class="password-match">
+                    <span class="match-text"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="login-button" id="registerButton">Criar conta</button>
+
+            <label class="remember-me">
+                <div class="checkbox-container">
+                    <input type="checkbox" class="checkbox-input" id="terms">
+                    <span class="checkmark"></span>
+                </div>
+                Aceito os
+                <a href="../TermsServ/terms.html" class="link">
+                    termos de serviço
+                </a>
+                e
+                <a href="../privacy/priv.html" class="link">
+                    política de privacidade
+                </a>
+            </label>
+        </form>
+
+        <div class="footer">
+            CineIA Sistema © 2024
+        </div>
+    </div>
+    <script src="/Registro/registro.js"></script>
+</body>
+</html>

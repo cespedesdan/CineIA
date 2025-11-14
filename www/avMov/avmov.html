@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineIA - Minhas Avaliações</title>
+    <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1425979306336849982/1427161807797223476/favicon.ico?ex=68eddb82&is=68ec8a02&hm=438a3219f73388580c7ccc2c42be42f31f064e31b16f8c42c33467e40529aff8&" type="image/x-icon">
+    <link rel="stylesheet" href="avmov.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Header -->
+<header class="main-header">
+    <div class="header-content">
+        <div class="header-left">
+            <div class="logo">
+                <h1 class="cineia-title">
+                    <span class="cine-part">Cine</span><span class="ia-part">IA</span>
+                </h1>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#" class="nav-link" onclick="window.location.href='../AllMov/mov.html'">Mais filmes</a>
+                <a href="#" class="nav-link" onclick="window.location.href='../RecMov/rmov.html'">Recomendações</a>
+                <a href="#" class="nav-link active">Minhas avaliações</a>
+            </nav>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="pesquisar" id="searchInput" autocomplete="off">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+
+            <div class="user-menu" id="userMenu" onclick="window.location.href='../profile/prof.html'">
+                <span class="username">Usuário</span>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Seção Filmes Avaliados -->
+    <section class="category-section">
+        <div class="category-header">
+            <h3 class="category-title">Minhas Avaliações</h3>
+        </div>
+        <div class="movies-grid" id="recommendedGrid">
+            <!-- Filmes serão inseridos via JavaScript -->
+        </div>
+    </section>
+</main>
+
+<!-- Modal de Detalhes do Filme -->
+<div id="movieModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="movie-details" id="movieDetails">
+            <!-- Conteúdo será preenchido via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Player de Vídeo -->
+<div id="videoPlayerContainer" class="video-player-container">
+    <div class="video-player">
+        <button class="close-player" onclick="closeVideoPlayer()">
+            <i class="fas fa-times"></i>
+        </button>
+        <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script src="avmov.js"></script>
+</body>
+</html>
